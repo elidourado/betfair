@@ -32,6 +32,7 @@ import (
 	"testing"
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 var (
@@ -157,18 +158,19 @@ func TestGetAccountDetails(t *testing.T) {
 	}	
 }
 
-func TestGetAccountFunds(t *testing.T) {
+/*func TestGetAccountFunds(t *testing.T) {
 	_, err := s.GetAccountFunds()
 	if err != nil {
 		t.Error(err.Error())
 	}	
-}
+}*/
 
 func TestGetDeveloperAppKeys(t *testing.T) {
-	_, err := s.GetDeveloperAppKeys()
+	app, err := s.GetDeveloperAppKeys()
 	if err != nil {
 		t.Error(err.Error())
-	}	
+	}
+	fmt.Println(app)
 }
 
 func TestLogout(t *testing.T) {
