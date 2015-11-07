@@ -30,7 +30,6 @@ import (
 	"encoding/json"
 	"strings"
 	"time"
-	"fmt"
 )
 
 type TimeRange struct {
@@ -446,8 +445,6 @@ func doBettingRequest(s *Session, method string, params interface{}, v interface
 		return err
 	}
 	body := strings.NewReader(string(bytes))
-
-	fmt.Printf(string(bytes))
 
 	data, err := doRequest(s, "betting", method, body)
 	if err != nil {
