@@ -218,14 +218,14 @@ type Side string
 
 const (
 	BACK = "BACK"
-	LAY = "LAY"
+	LAY  = "LAY"
 )
 
 type OrderType string
 
 const (
-	LIMIT = "LIMIT"
-	LIMIT_ON_CLOSE = "LIMIT_ON_CLOSE"
+	LIMIT           = "LIMIT"
+	LIMIT_ON_CLOSE  = "LIMIT_ON_CLOSE"
 	MARKET_ON_CLOSE = "MARKET_ON_CLOSE"
 )
 
@@ -236,15 +236,15 @@ type PlaceInstruction struct {
 	OrderType   OrderType `json:"orderType, omitempty"`
 	// marketOnCloseOrder
 	// limitOnCloseOrder
-	LimitOrder  LimitOrder `json:"limitOrder, omitempty"`
+	LimitOrder LimitOrder `json:"limitOrder, omitempty"`
 	// The handicap associated with the runner in case of Asian handicap markets, null otherwise.
-	Handicap    float32 `json:"handicap,omitempty"`
+	Handicap float32 `json:"handicap,omitempty"`
 }
 
 type PersistenceType string
 
 const (
-	LAPSE = "LAPSE"
+	LAPSE   = "LAPSE"
 	PERSIST = "PERSIST"
 )
 
@@ -257,10 +257,10 @@ type LimitOrder struct {
 type ExecutionReportStatus string
 
 const (
-	SUCCESS = "SUCCESS"
-	FAILURE = "FAILURE"
+	SUCCESS               = "SUCCESS"
+	FAILURE               = "FAILURE"
 	PROCESSED_WITH_ERRORS = "PROCESSED_WITH_ERRORS"
-	TIMEOUT = "TIMEOUT"
+	TIMEOUT               = "TIMEOUT"
 )
 
 // Place order report
@@ -311,7 +311,7 @@ type CancelInstructionReport struct {
 }
 
 type CancelInstruction struct {
-	BetId         string  `json:"betId,omitempty"`
+	BetId         string   `json:"betId,omitempty"`
 	SizeReduction *float32 `json:"sizeReduction,omitempty"`
 }
 

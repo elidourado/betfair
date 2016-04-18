@@ -38,19 +38,19 @@ func main() {
 	checkErr(loginErr)
 	defer s.Logout()
 
-	marketId := "1.121189454"
-	selectionId := 10400676
+	marketId := "1.122451932"
+	selectionId := 9138414
 
 	instructions := []betfair.PlaceInstruction{
 		betfair.PlaceInstruction{
 			SelectionId: selectionId,
-			Side:        betfair.BACK,
+			Side:        betfair.LAY,
 			OrderType:   betfair.LIMIT,
 			Handicap:    0,
 			LimitOrder: betfair.LimitOrder{
-				PersistenceType: betfair.PERSIST,
+				PersistenceType: betfair.LAPSE,
 				Size:            4,
-				Price:           1000,
+				Price:           1.01,
 			},
 		},
 	}
@@ -63,13 +63,13 @@ func main() {
 	instructions = []betfair.PlaceInstruction{
 		betfair.PlaceInstruction{
 			SelectionId: selectionId,
-			Side:        betfair.BACK,
+			Side:        betfair.LAY,
 			OrderType:   betfair.LIMIT,
 			Handicap:    0,
 			LimitOrder: betfair.LimitOrder{
-				PersistenceType: betfair.PERSIST,
+				PersistenceType: betfair.LAPSE,
 				Size:            1,
-				Price:           1000,
+				Price:           1.01,
 			},
 		},
 	}
@@ -85,7 +85,7 @@ func main() {
 	fmt.Println(report2)
 
 	replaceInstruction := []betfair.ReplaceInstruction{
-		betfair.ReplaceInstruction{betId2, 70},
+		betfair.ReplaceInstruction{betId2, 1.04},
 	}
 	report3, err := s.ReplaceOrders(marketId, replaceInstruction, "")
 	checkErr(err)

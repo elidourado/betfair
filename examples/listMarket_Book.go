@@ -32,18 +32,17 @@ func main() {
 
 	s, err := betfair.NewSession(config)
 	checkErr(err)
+	s.Live = true
 
 	loginErr := s.LoginNonInteractive()
 	checkErr(loginErr)
 	defer s.Logout()
 
-	details, err := s.GetAccountDetails()
-	checkErr(err)
+	marketId := "1.122459972"
 
-	funds, err := s.GetAccountFunds()
-	checkErr(err)
+	marketBooks, err := s.ListMarketBook([]string{marketId})
 
-	fmt.Printf("%s %s (%s)\n", details.FirstName, details.LastName, details.LocaleCode)
-	fmt.Printf("\tAvailable: %s %.2f\n", details.CurrencyCode, funds.AvailableToBetBalance)
-	fmt.Printf("\tExposure : %s %.2f\n", details.CurrencyCode, funds.Exposure)
+	for _, runner := range marketBooks[0].Runners {
+		fmt.Println(runner.Ex.AvailableToLay[0].Price)
+	}
 }

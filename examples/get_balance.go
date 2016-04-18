@@ -37,13 +37,9 @@ func main() {
 	checkErr(loginErr)
 	defer s.Logout()
 
-	details, err := s.GetAccountDetails()
-	checkErr(err)
+	s.Live = true
 
-	funds, err := s.GetAccountFunds()
-	checkErr(err)
+	resp, err := s.GetAccountFunds()
 
-	fmt.Printf("%s %s (%s)\n", details.FirstName, details.LastName, details.LocaleCode)
-	fmt.Printf("\tAvailable: %s %.2f\n", details.CurrencyCode, funds.AvailableToBetBalance)
-	fmt.Printf("\tExposure : %s %.2f\n", details.CurrencyCode, funds.Exposure)
+	fmt.Println(resp, err)
 }

@@ -33,41 +33,41 @@ import (
 
 // Response for Account details.
 type AccountDetailsResponse struct {
-	CurrencyCode	string
-	FirstName		string
-	LastName		string
-	LocaleCode		string
-	Region			string
-	Timezone		string
-	DiscountRate	float32
-	PointsBalance	int
+	CurrencyCode  string
+	FirstName     string
+	LastName      string
+	LocaleCode    string
+	Region        string
+	Timezone      string
+	DiscountRate  float32
+	PointsBalance int
 }
 
 // Response for retrieving available to bet.
 type AccountFundsResponse struct {
-	AvailableToBetBalance	float32
-	Exposure				float32
-	RetainedCommission		float32
-	ExposureLimit			float32
+	AvailableToBetBalance float32
+	Exposure              float32
+	RetainedCommission    float32
+	ExposureLimit         float32
 }
 
 // Describes developer/vendor specific application.
 type DeveloperApp struct {
-	AppName		string
-	AppId		uint64
-	AppVersions	[]DeveloperAppVersion
+	AppName     string
+	AppId       uint64
+	AppVersions []DeveloperAppVersion
 }
 
 // Describes a version of an external application.
 type DeveloperAppVersion struct {
-	Owner					string
-	VersionId				uint64
-	Version					string
-	ApplicationKey			string
-	DelayData				bool
-	SubscriptionRequired	bool
-	OwnerManaged			bool
-	Active					bool
+	Owner                string
+	VersionId            uint64
+	Version              string
+	ApplicationKey       string
+	DelayData            bool
+	SubscriptionRequired bool
+	OwnerManaged         bool
+	Active               bool
 }
 
 // Get Account details.
@@ -79,9 +79,12 @@ func (s *Session) GetAccountDetails() (AccountDetailsResponse, error) {
 
 // Get available to bet amount.
 func (s *Session) GetAccountFunds() (AccountFundsResponse, error) {
-	var response AccountFundsResponse
+	var response struct {
+		JsonRPC string
+		Result  AccountFundsResponse
+	}
 	err := doAccountRequest(s, "getAccountFunds", &response)
-	return response, err
+	return response.Result, err
 }
 
 // Get all application keys owned by the given developer/vendor.

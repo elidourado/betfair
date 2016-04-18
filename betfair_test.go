@@ -29,15 +29,15 @@
 package betfair
 
 import (
-	"testing"
 	"encoding/json"
-	"os"
 	"fmt"
+	"os"
+	"testing"
 )
 
 var (
-	s 			*Session
-	marketId 	string
+	s        *Session
+	marketId string
 )
 
 func TestNewSession(t *testing.T) {
@@ -68,7 +68,7 @@ func TestLoginNonInteractive(t *testing.T) {
 func TestKeepAlive(t *testing.T) {
 	if err := s.KeepAlive(); err != nil {
 		t.Error(err.Error())
-	}	
+	}
 }
 
 func TestListCountries(t *testing.T) {
@@ -155,14 +155,14 @@ func TestGetAccountDetails(t *testing.T) {
 	_, err := s.GetAccountDetails()
 	if err != nil {
 		t.Error(err.Error())
-	}	
+	}
 }
 
 /*func TestGetAccountFunds(t *testing.T) {
 	_, err := s.GetAccountFunds()
 	if err != nil {
 		t.Error(err.Error())
-	}	
+	}
 }*/
 
 func TestGetDeveloperAppKeys(t *testing.T) {
@@ -176,5 +176,5 @@ func TestGetDeveloperAppKeys(t *testing.T) {
 func TestLogout(t *testing.T) {
 	if err := s.Logout(); err != nil {
 		t.Error(err.Error())
-	}	
+	}
 }

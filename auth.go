@@ -24,21 +24,21 @@
 package betfair
 
 import (
-	"errors"
 	"encoding/json"
+	"errors"
 	"strings"
 )
 
 type certLoginResult struct {
-	LoginStatus		string	`json:"loginStatus"`
-	SessionToken	string 	`json:"sessionToken"`
+	LoginStatus  string `json:"loginStatus"`
+	SessionToken string `json:"sessionToken"`
 }
 
 type keepAliveResult struct {
-	Token	string `json:"token"`
-	Product	string `json:"product"`
-	Status	string `json:"status"`
-	Error	string `json:"error"`
+	Token   string `json:"token"`
+	Product string `json:"product"`
+	Status  string `json:"status"`
+	Error   string `json:"error"`
 }
 
 // The non-interactive login method for API-NG requires that you create and
@@ -53,7 +53,6 @@ func (s *Session) LoginNonInteractive() error {
 	if err != nil {
 		return err
 	}
-
 
 	var result certLoginResult
 	err = json.Unmarshal(data, &result)
@@ -75,14 +74,14 @@ func (s *Session) LoginNonInteractive() error {
 		return errors.New("Cannot get app keys")
 	}
 	if len(apps[0].AppVersions) != 2 {
-		return errors.New("Invalid amount of app versions")		
+		return errors.New("Invalid amount of app versions")
 	}
 	if apps[0].AppVersions[0].DelayData {
 		s.appKeys[DELAY_DATA] = apps[0].AppVersions[0].ApplicationKey
 		s.appKeys[LIVE_DATA] = apps[0].AppVersions[1].ApplicationKey
 	} else {
 		s.appKeys[DELAY_DATA] = apps[0].AppVersions[1].ApplicationKey
-		s.appKeys[LIVE_DATA] = apps[0].AppVersions[0].ApplicationKey		
+		s.appKeys[LIVE_DATA] = apps[0].AppVersions[0].ApplicationKey
 	}
 
 	return nil
@@ -96,10 +95,10 @@ func (s *Session) KeepAlive() error {
 	var result keepAliveResult
 
 	data, err := doRequest(s, "auth", "keepAlive", strings.NewReader(""))
-	
+
 	if err != nil {
 		return err
-	}	
+	}
 	if err = json.Unmarshal(data, &result); err != nil {
 		return err
 	}
@@ -113,10 +112,10 @@ func (s *Session) KeepAlive() error {
 // Logout from Betfair.
 func (s *Session) Logout() error {
 
-	var result keepAliveResult	
+	var result keepAliveResult
 
 	data, err := doRequest(s, "auth", "logout", strings.NewReader(""))
-	
+
 	if err != nil {
 		return err
 	}
@@ -129,7 +128,6 @@ func (s *Session) Logout() error {
 
 	return nil
 }
-
 
 // Logout from Betfair.
 func (s *Session) Login() error {

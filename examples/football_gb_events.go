@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/aded/betfair"
+	"encoding/json"
 	"flag"
+	"fmt"
+	"github.com/aded/betfair"
 	"log"
 	"os"
-	"encoding/json"
-	"fmt"
 )
 
 var confFile = flag.String("conf", "", "A json configuration file")
