@@ -48,14 +48,14 @@ const (
 )
 
 var ukEndpoints = map[string]string{
-	"certLogin": "https://identitysso-api.betfair.com/api/certlogin",
+	"certLogin": "https://identitysso-cert.betfair.com/api/certlogin",
 	"auth":      "https://identitysso.betfair.com/api/",
 	"betting":   "https://api.betfair.com/exchange/betting/rest/v1.0/",
 	"account":   "https://api.betfair.com/exchange/account/rest/v1.0/",
 }
 
 var auEndpoints = map[string]string{
-	"certLogin": "https://identitysso-api.betfair.com/api/certlogin",
+	"certLogin": "https://identitysso-cert.betfair.com/api/certlogin",
 	"auth":      "https://identitysso.betfair.com/api/",
 	"betting":   "https://api-au.betfair.com/exchange/betting/rest/v1.0/",
 	"account":   "https://api-au.betfair.com/exchange/account/rest/v1.0/",
